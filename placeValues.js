@@ -4,9 +4,11 @@ function getPlaceValues(number) {
 
     var placeValues = [];
     var numberLength = Math.floor(Math.log10(number)) + 1;
-    numberLength -= 1;
 
-    while (numberLength >= 0) {
+    while (numberLength >= 1) {
+	// decrement number length to repeat process
+        // for next digit
+        numberLength -= 1;
         // get the current place value, e.g. 10, 100, 1000 etc
         var currentPlace = Math.pow(10,numberLength);
         // get the current digit, e.g. 3 from 3291
@@ -15,9 +17,6 @@ function getPlaceValues(number) {
         placeValues.push(currentDigit*currentPlace);
         // remove current place from number
         number %= currentPlace;
-        // decrement number length to repeat process
-        // for next digit
-        numberLength -= 1;
     }
 
     return placeValues;
